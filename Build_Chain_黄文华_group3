@@ -1,0 +1,29 @@
+•	check_env() 要求安裝 openssl 並加至PATH變數。
+•	parse_params() 設定參數 
+•	main()
+	檢查node IP (使用array或IP file)。
+	檢查FISCO_BCOS版本。
+	檢查或下載FISCO_BCOS bin。
+	檢查或生成證書config。
+	生成CA鑰匙：
+	生成 chain cert。
+	生成agency_cert。
+	按需要生成國密config及國密CA鑰匙 (chain cert及agency_cert)。
+	生成鑰匙：
+	針對每一個node IP：
+•	生成證書。
+•	生成私匙。
+•	按需要生成國密證書及國密私匙。
+	按需要把國密agency證書及國密CA證書一併輸出至國密node證書。
+	計算node 數量。
+	按需要生成SDK所需的node證書及鑰匙。
+	生成config檔：
+	針對每一個node IP：
+•	記錄IP, Total, Agency, Groups。
+•	記錄node_count。
+•	生成config.ini。
+•	生成group.genesis及group.ini。
+•	生成node scripts。
+	生成server scripts。
+•	print_result()
+
