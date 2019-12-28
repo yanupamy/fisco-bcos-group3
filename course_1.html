@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Test</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.0/foundation.min.css">
+        <style>
+            div#Btns .buttonStyle
+            {
+                width:100%;
+                margin-bottom:2%;
+            }
+            .marginBottom1em
+            {
+                margin-bottom:2%;
+            }
+            .bgColorCreateCredential
+            {
+                background-color:#26ff8f;
+            }
+            .bgColorCreateCredentialClaims
+            {
+                background-color:#FFAE00;
+            }
+            .bgColorCreateCredentialResult
+            {
+                background-color:aqua;
+            }
+        </style>
+    </head>
+    <body>    
+        <div class="row">
+            <div class="large-12 columns">
+                <a id = "btnCreateWeID" class="button buttonStyle">Create WeID</a>
+                <textarea id="areaCreateWeID" style="height:100%"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <a id = "btnGetWeIDDocument" class="button buttonStyle">Get WeID Document</a>
+                <textarea id="areaGetWeIDDocument" style="height:10em"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <a id = "btnRegisterAuthorityIssuer" class="button buttonStyle">Register Authority Issuer</a>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label>
+                            WeID
+                            <input id="tbRegAuIssuerWeID" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Company Name
+                            <input id="tbRegAuIssuerName" type="text">
+                        </label>
+                    </div>
+                </div>
+                <label class="marginBottom1em">Register Authority Issuer: <span id="lbRegAuIssuerResult"></span></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <a id = "btnRegisterCPT" class="button buttonStyle">Register CPT</a>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label>
+                            CPT Creator WeID
+                            <input id="tbRegisterCPTWeID" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Invoker WeID
+                            <input id="tbRegisterCPTInvokerWeID" type="text">
+                        </label>
+                    </div>
+                </div>
+                <label class="marginBottom1em">CPT ID: <span id="lbRegisterCPTID"></span></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <a id = "btnCreateCredential" class="button buttonStyle">Create Credential</a>
+                <a id = "btnVerifyCredential" class="button warning">Verify Credential</a>
+                <span id="VerifyCredentialResult"></span>
+                <div class="row bgColorCreateCredential">
+                    <div class="large-6 columns">
+                        <label>
+                            CPT Creator WeID
+                            <input id="tbCreateCredentialWeID" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Invoker WeID
+                            <input id="tbCreateCredentialInvokerWeID" type="text">
+                        </label>
+                    </div>
+                </div>
+                <div class="row bgColorCreateCredential">
+                    <div class="large-6 columns">
+                        <label>
+                            CPT ID
+                            <input id="tbCreateCredentialCPTID" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Expiration Date
+                            <input id="tbCreateCredentialExpiredDate" type="text">
+                        </label>
+                    </div>
+                </div>
+                <div class="row bgColorCreateCredentialClaims">
+                    <div class="large-6 columns">
+                        <label>
+                            Usage Type
+                            <input id="tbCreateCredentialUsageType" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Price
+                            <input id="tbCreateCredentialPrice" type="text">
+                        </label>
+                    </div>
+                </div>
+                <div class="row bgColorCreateCredentialClaims">
+                    <div class="large-6 columns">
+                        <label>
+                            Owner Name
+                            <input id="tbCreateCredentialOwnerName" type="text">
+                        </label>
+                    </div>
+                    <div class="large-6 columns">
+                        <label>
+                            Owner Contact
+                            <input id="tbCreateCredentialOwnerContact" type="text">
+                        </label>
+                    </div>
+                </div>
+                <div class="row bgColorCreateCredentialResult">
+                    <div class="large-12 columns">
+                        <label>
+                            Results
+                            <div class="row">
+                                <div class="large-6 columns">
+                                    <label>
+                                        Context
+                                        <input id="tbCreateCredentialContext" type="text">
+                                    </label>
+                                </div>
+                                <div class="large-6 columns">
+                                    <label>
+                                        Credential ID
+                                        <input id="tbCreateCredentialCredentialID" type="text">
+                                    </label>
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns">
+                                    <label>
+                                        Issuer
+                                        <input id="tbCreateCredentialIssuer" type="text">
+                                    </label>
+                                </div>
+                                <div class="large-6 columns">
+                                    <label>
+                                        Issue Date
+                                        <input id="tbCreateCredentialIssueDate" type="text">
+                                    </label>
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns">
+                                    <label>
+                                        Proof : Created
+                                        <input id="tbCreateCredentialCreated" type="text">
+                                    </label>
+                                </div>
+                                <div class="large-6 columns">
+                                    <label>
+                                        Proof : Creator
+                                        <input id="tbCreateCredentialCreator" type="text">
+                                    </label>
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="large-6 columns">
+                                    <label>
+                                        Proof : Signature
+                                        <input id="tbCreateCredentialSignature" type="text">
+                                    </label>
+                                </div>
+                                <div class="large-6 columns">
+                                    <label>
+                                        Proof : Type
+                                        <input id="tbCreateCredentialType" type="text">
+                                    </label>
+                                </div>    
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.0/foundation.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                
+                var d1 = {
+                    "functionArg": {},
+                    "transactionArg": {},
+                    "v": "1.0.0",
+                    "functionName": "createWeId"
+                };
+
+                var d2 = {
+                    "functionArg": {
+                        "weId": ""
+                    },
+                    "transactionArg": {
+                    },
+                    "functionName": "getWeIdDocument",
+                    "v": "1.0.0"
+                };
+
+                var d3 = {
+                    "functionArg": {
+                        "weId": "",
+                        "name": ""
+                    },
+                    "transactionArg": {
+                        "invokerWeId": "ecdsa_key"
+                    },
+                    "v": "1.0.0",
+                    "functionName": "registerAuthorityIssuer"
+                }
+
+                var d4 = {
+                    "functionArg": {
+                        "weId": "",
+                        "cptJsonSchema": {
+                            "usageType" : "Usage Type",
+                            "price": "Price",
+                            "owner" : {
+                                "name" : "Owner Name",
+                                "tel" : "Contact Telephone"
+                            }
+                        }
+                    },
+                    "transactionArg": {
+                        "invokerWeId": ""
+                    },
+                    "v": "1.0.0",
+                    "functionName": "registerCpt"
+                }
+
+                var d5 = {
+                    "functionArg": {
+                        "cptId": 0,
+                        "issuer": "",
+                        "expirationDate": "2019-12-31T00:00:00Z",
+                        "claim": {
+                            "usageType" : "",
+                            "price": "",
+                            "owner" : {
+                                "name" : "Owner Name",
+                                "tel" : "Contact Telephone"
+                            }
+                        },
+                    },
+                    "transactionArg": {
+                        "invokerWeId": ""
+                    },
+                    "functionName": "createCredential",
+                    "v": "1.0.0"
+                }
+
+                var d6 = {
+                    "functionArg": {
+                        "@context": "",
+                        "claim": {
+                            "usageType" : "",
+                            "price": "",
+                            "owner" : {
+                                "name" : "Owner Name",
+                                "tel" : "Contact Telephone"
+                            }
+                        },
+                        "cptId": 0,
+                        "expirationDate": "",
+                        "id": "",
+                        "issuanceDate": "",
+                        "issuer": "",
+                        "proof": {
+                            "created": "",
+                            "creator": "",
+                            "signature": "",
+                            "type": ""
+                        }
+                    },
+                    "transactionArg": {
+                    },
+                    "v": "1.0.0",
+                    "functionName": "verifyCredential"
+                }
+
+                $("#btnCreateWeID").click(function(){ 
+                    
+                    $.ajax({
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d1),
+                        success: function(data) {
+                            var weID = data.respBody;
+                            $("#areaCreateWeID").val(weID);
+                            $("#tbRegAuIssuerWeID").val(weID);    
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                })
+
+                $("#btnGetWeIDDocument").click(function(){ 
+                    d2.functionArg.weId = $("#areaCreateWeID").val();
+                    $.ajax({
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d2),
+                        success: function(data) {
+                            if (data.errorCode === 0)
+                            {
+                                $("#areaGetWeIDDocument").val(JSON.stringify(data.respBody));  
+                            }
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                });
+
+                $("#btnRegisterAuthorityIssuer").click(function(){ 
+                    d3.functionArg.weId = $("#tbRegAuIssuerWeID").val();
+                    d3.functionArg.name = $("#tbRegAuIssuerName").val();
+                    $.ajax({
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d3),
+                        success: function(data) {
+                            var RegisterSuccess = data.respBody;
+                            $("#lbRegAuIssuerResult").text(RegisterSuccess);
+                            var weID = (RegisterSuccess ? d3.functionArg.weId: "")
+                            $("#tbRegisterCPTWeID").val(weID);
+                            $("#tbRegisterCPTInvokerWeID").val(weID);
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                });
+
+                $("#btnRegisterCPT").click(function(){ 
+                    d4.functionArg.weId = $("#tbRegisterCPTWeID").val();
+                    d4.transactionArg.invokerWeId = $("#tbRegisterCPTInvokerWeID").val();
+                    $.ajax({
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d4),
+                        success: function(data) {
+                            if (data.errorCode === 0)
+                            {
+                                var cptID = data.respBody.cptId;
+                                $("#lbRegisterCPTID").text(cptID); 
+                                $("#tbCreateCredentialCPTID").val(cptID);
+                                $("#tbCreateCredentialWeID").val(d4.functionArg.weId);
+                                $("#tbCreateCredentialInvokerWeID").val(d4.transactionArg.invokerWeId);
+                                $("#tbCreateCredentialExpiredDate").val(d5.functionArg.expirationDate); 
+                            } 
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                });
+
+                $("#btnCreateCredential").click(function(){ 
+                    d5.functionArg.issuer = $("#tbCreateCredentialWeID").val();
+                    d5.functionArg.cptId = $("#tbCreateCredentialCPTID").val();
+                    d5.functionArg.expirationDate = $("#tbCreateCredentialExpiredDate").val();
+                    d5.functionArg.claim.usageType = $("#tbCreateCredentialUsageType").val();
+                    d5.functionArg.claim.price = $("#tbCreateCredentialPrice").val();
+                    d5.functionArg.claim.owner.name = $("#tbCreateCredentialOwnerName").val();
+                    d5.functionArg.claim.owner.tel = $("#tbCreateCredentialOwnerContact").val();
+                    d5.transactionArg.invokerWeId = $("#tbCreateCredentialInvokerWeID").val();
+                    $.ajax({ 
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d5),
+                        success: function(data) {
+                            if (data.errorCode === 0)
+                            {
+                                var response = data.respBody;
+                                $("#tbCreateCredentialContext").val(response["@context"]);
+                                $("#tbCreateCredentialCredentialID").val(response.id); 
+                                $("#tbCreateCredentialIssuer").val(response.issuer); 
+                                $("#tbCreateCredentialIssueDate").val(response.issuanceDate);
+                                var proof = response.proof; 
+                                $("#tbCreateCredentialCreated").val(proof.created); 
+                                $("#tbCreateCredentialCreator").val(proof.creator); 
+                                $("#tbCreateCredentialSignature").val(proof.signature); 
+                                $("#tbCreateCredentialType").val(proof.type);  
+                            } 
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                });
+
+                $("#btnVerifyCredential").click(function(){
+                    var funcArg = d6.functionArg;
+                    funcArg["@context"] = $("#tbCreateCredentialContext").val();                    
+                    funcArg.cptId = $("#tbCreateCredentialCPTID").val();
+                    funcArg.expirationDate = $("#tbCreateCredentialExpiredDate").val();
+                    funcArg.id = $("#tbCreateCredentialCredentialID").val();
+                    funcArg.issuanceDate = $("#tbCreateCredentialIssueDate").val();
+                    funcArg.issuer = $("#tbCreateCredentialIssuer").val();
+
+                    var claim = d6.functionArg.claim;
+                    claim.usageType = $("#tbCreateCredentialUsageType").val();
+                    claim.price = $("#tbCreateCredentialPrice").val();
+                    var owner = claim.owner;
+                    owner.name = $("#tbCreateCredentialOwnerName").val();
+                    owner.tel = $("#tbCreateCredentialOwnerContact").val();
+
+                    var proof = d6.functionArg.proof;
+                    proof.created = $("#tbCreateCredentialCreated").val();
+                    proof.creator = $("#tbCreateCredentialCreator").val();
+                    proof.signature = $("#tbCreateCredentialSignature").val();
+                    proof.type = $("#tbCreateCredentialType").val();
+
+                    $.ajax({ 
+                        url: "http://localhost:6001/weid/api/invoke",
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json", 
+                        data: JSON.stringify(d6),
+                        success: function(data) {
+                            $("#VerifyCredentialResult").text("Credential verification " + (data.errorCode === 0 ? "success" : "failed. Error Message = " + data.errorMessage));
+                        },
+                        error: function (jqXHR, status, exception) {
+                            alert('fail : ' + exception);
+                        }    
+                    })
+                });
+
+            });
+        </script>
+    </body>
+</html>
